@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flexbox Layout with 16:9 HLS Video Grid and Controls</title>
+    <title>ΠΑΝΕΛΛΑΔΙΚΑ - A24/ATV MV</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/hero-new" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
-        /* Global Styles */
-        body, html {
+        body,
+        html {
             margin: 0;
             padding: 0;
             height: 100%;
@@ -20,7 +22,11 @@
             background-color: #f8f8f8;
         }
 
-        /* Page Container Styles */
+        ::selection {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
         .page-container {
             max-width: 1440px;
             margin: 0 auto;
@@ -29,14 +35,12 @@
             position: relative;
         }
 
-        /* Main Container Styles */
         .main-container {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
-        /* Header Styles */
         .header {
             position: relative;
             display: flex;
@@ -45,7 +49,6 @@
             height: 90px;
         }
 
-        /* Menu Styles */
         .menu {
             display: flex;
             flex-direction: column;
@@ -58,22 +61,27 @@
             transition: background-color 0.2s ease;
         }
 
-        /* Logo Styles */
         .logo {
             margin-top: -1px;
             height: 100%;
+            pointer-events: none;
+            user-drag: none;
+            -webkit-user-drag: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            pointer-events: none;
         }
 
-        /* Menu Line Styles */
         .menu-line {
             width: 40px;
             height: 3px;
             background-color: #333;
-            margin: 4px 0;
+            margin: 3px 0;
             transition: 0.4s;
         }
 
-        /* Change State Styles */
         .change {
             background-color: #ff0000;
         }
@@ -83,7 +91,7 @@
         }
 
         .change .menu-line:nth-child(1) {
-            transform: rotate(-45deg) translate(-7px, 8px);
+            transform: rotate(-45deg) translate(-6px, 7px);
         }
 
         .change .menu-line:nth-child(2) {
@@ -91,37 +99,35 @@
         }
 
         .change .menu-line:nth-child(3) {
-            transform: rotate(45deg) translate(-7px, -8px);
+            transform: rotate(45deg) translate(-6px, -7px);
         }
 
-        /* Dropdown Menu Styles */
         .dropdown-menu {
             position: absolute;
             top: 132px;
             left: 0;
             right: 0;
             background-color: #ffd700d9;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             z-index: 3;
             overflow: hidden;
             max-height: 0;
-            transition: max-height 0.3s cubic-bezier(.86,0,.07,1);
+            transition: max-height 0.3s cubic-bezier(.86, 0, .07, 1);
             backdrop-filter: blur(3px) grayscale(100%);
         }
 
         .dropdown-menu.show {
             max-height: calc(100vh - 132px);
             overflow-y: scroll;
-            scrollbar-width: none;  /* Firefox */
-            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
 
-        .dropdown-menu.show::-webkit-scrollbar {  /* WebKit */
+        .dropdown-menu.show::-webkit-scrollbar {
             width: 0;
             height: 0;
         }
 
-        /* Dropdown Menu Content Styles */
         .dropdown-menu-content {
             opacity: 0;
             transform: translateY(-20px);
@@ -133,7 +139,6 @@
             transform: translateY(0);
         }
 
-        /* Dropdown Menu Links Styles */
         .dropdown-menu a {
             color: black;
             padding: 12px 16px;
@@ -148,41 +153,51 @@
             color: #ffd700;
         }
 
-        /* Header Video Container Styles */
         .header-video-container {
             display: flex;
             flex-grow: 1;
-            justify-content: flex-end; /* Changed from center to flex-end */
+            justify-content: flex-end;
             align-items: center;
             height: 100%;
             overflow: visible;
             z-index: 2;
         }
 
-        /* Header Video Styles */
         .header-video {
             height: 100%;
             width: auto;
             aspect-ratio: 16/9;
-            object-fit: cover;
             cursor: pointer;
             transition: box-shadow 0.3s ease;
             position: relative;
             z-index: 1;
         }
 
-        /* Header Video Hover Styles */
+        #header-video1 {
+            background-image: url(https://i.postimg.cc/9FVp1vkK/OFFLINE.png);
+            background-size: cover;
+        }
+
+        #header-video2 {
+            background-image: url(https://i.postimg.cc/9FVp1vkK/OFFLINE.png);
+            background-size: cover;
+        }
+
+        #video1, #video2, #video3, #video4, #video5, #video6, #video7, #video8 {
+            background-image: url(https://i.postimg.cc/9FVp1vkK/OFFLINE.png);
+            background-size: cover;
+        }
+
         #header-video1:hover {
-            box-shadow: 0 0 20px 5px rgba(0, 0, 255, 0.5);
+            box-shadow: 0 0 20px 5px rgb(0 137 255);
             z-index: 2;
         }
 
         #header-video2:hover {
-            box-shadow: 0 0 20px 5px rgba(255, 0, 0, 0.5);
+            box-shadow: 0 0 20px 5px rgb(255 0 0);
             z-index: 2;
         }
 
-        /* Clock Styles */
         .clock {
             display: flex;
             flex-direction: column;
@@ -204,34 +219,29 @@
             margin-bottom: 6px;
         }
 
-        /* Main Title Styles */
         .main-title {
             text-align: center;
             background-color: #ffd700;
         }
 
-        /* Video Grid Styles */
         .video-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            width: calc(100% - 0px);
+            width: 100%;
             box-sizing: border-box;
         }
 
-        /* Video Wrapper Styles */
         .video-wrapper {
             display: flex;
             flex-direction: column;
         }
 
-        /* Video Container Styles */
         .video-container {
             position: relative;
             width: 100%;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            padding-top: 56.25%;
         }
 
-        /* Video Player Styles */
         .video-player {
             position: absolute;
             top: 0;
@@ -241,23 +251,29 @@
             background: #000;
         }
 
-        /* Title Box Styles */
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         .title-box {
             background-color: #ffd700;
             height: 35px;
             cursor: pointer;
             font-size: 15px;
-            line-height: 34px;
+            line-height: 34.5px;
         }
 
-        /* Title Text Styles */
         .title-text {
             text-align: center;
             margin: 0;
             color: #000000;
         }
 
-        /* Video Controls Styles */
         .video-controls {
             position: absolute;
             top: 10px;
@@ -267,42 +283,46 @@
             z-index: 2;
         }
 
-        /* Control Button Styles */
         .control-button {
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgb(255 215 0 / 69%);
             border: none;
-            color: white;
             cursor: pointer;
-            padding: 5px 10px;
-            font-size: 12px;
-            border-radius: 3px;
+            padding: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .control-button:hover {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: #ffd700;
         }
 
-        /* Crawl Container Styles */
+        .control-button img {
+            width: 16px;
+            height: 16px;
+        }
+
         .crawl-container {
             width: 100%;
             overflow: hidden;
             background-color: #1e1e1e;
             color: white;
             padding: 10px 0;
+            position: relative;
         }
 
-        /* Crawl Wrapper Styles */
         .crawl-wrapper {
             display: inline-block;
             white-space: nowrap;
-            animation: crawl 600s linear infinite;
+            position: relative;
+            left: 100%;
+            animation: crawl 680s linear infinite;
         }
 
         .crawl-wrapper:hover {
             animation-play-state: paused;
         }
 
-        /* Crawl Item Styles */
         .crawl-item {
             display: inline-block;
             margin-right: 50px;
@@ -314,19 +334,32 @@
         }
 
         .crawl-item a:hover {
-            text-decoration: underline;
+            color: #ffd700;
         }
 
-        /* Animation for Crawl */
         @keyframes crawl {
-            0% { transform: translateX(0); }
-            50% { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
         }
 
         @media (max-width: 950px) {
             .header-video-container {
                 display: none;
+            }
+
+            .control-button img {
+                width: 24px;
+                height: 24px;
+            }
+
+            .title-box {
+                height: 42px;
+                line-height: 41px;
             }
         }
 
@@ -340,7 +373,8 @@
                 z-index: 1000;
             }
 
-            .clock, #current-date {
+            .clock,
+            #current-date {
                 display: none;
             }
 
@@ -353,23 +387,23 @@
             }
 
             .main-container {
-                padding-top: 90px; /* Adjust this value based on the header height */
+                padding-top: 90px;
             }
 
             .dropdown-menu {
-                top: 90px; /* Adjust this value based on the header height */
+                top: 90px;
                 max-height: 0;
                 height: auto;
                 position: fixed;
                 width: 100%;
                 overflow: hidden;
-                transition: max-height 0.3s cubic-bezier(.86,0,.07,1);
+                transition: max-height 0.3s cubic-bezier(.86, 0, .07, 1);
             }
 
             .dropdown-menu.show {
                 max-height: calc(100vh - 90px);
                 overflow-y: auto;
-                -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+                -webkit-overflow-scrolling: touch;
             }
 
             body.menu-open {
@@ -400,6 +434,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="page-container">
         <div class="main-container">
@@ -463,103 +498,135 @@
                 <a href="#">Link 36</a>
             </div>
             <div class="main-title">
-                <h1>Main Title</h1>
+                <h1>ΠΑΝΕΛΛΑΔΙΚΑ</h1>
             </div>
             <div class="video-grid">
                 <div class="video-wrapper">
                     <div class="video-container">
                         <video id="video1" class="video-player"></video>
                         <div class="video-controls">
-                            <button class="control-button mute-button" onclick="toggleMute(0)">Unmute</button>
-                            <button class="control-button fullscreen-button" onclick="toggleFullscreen(0)">Fullscreen</button>
+                            <button class="control-button mute-button" onclick="toggleMute(0)">
+                                <img src="https://i.postimg.cc/kgJm5t8B/volume-off-indicator.png" alt="Mute">
+                            </button>
+                            <button class="control-button fullscreen-button" onclick="toggleFullscreen(0)">
+                                <img src="https://i.postimg.cc/Vs4yVk2w/fullscreen.png" alt="Fullscreen">
+                            </button>
                         </div>
                     </div>
                     <div class="title-box" onclick="copyHlsUrl(0, this)">
-                        <h3 class="title-text">Video 1 Title</h3>
+                        <h3 class="title-text">ΑΝΤ1</h3>
                     </div>
                 </div>
                 <div class="video-wrapper">
                     <div class="video-container">
                         <video id="video2" class="video-player"></video>
                         <div class="video-controls">
-                            <button class="control-button mute-button" onclick="toggleMute(1)">Unmute</button>
-                            <button class="control-button fullscreen-button" onclick="toggleFullscreen(1)">Fullscreen</button>
+                            <button class="control-button mute-button" onclick="toggleMute(1)">
+                                <img src="https://i.postimg.cc/kgJm5t8B/volume-off-indicator.png" alt="Mute">
+                            </button>
+                            <button class="control-button fullscreen-button" onclick="toggleFullscreen(1)">
+                                <img src="https://i.postimg.cc/Vs4yVk2w/fullscreen.png" alt="Fullscreen">
+                            </button>
                         </div>
                     </div>
                     <div class="title-box" onclick="copyHlsUrl(1, this)">
-                        <h3 class="title-text">Video 2 Title</h3>
+                        <h3 class="title-text">ALPHA</h3>
                     </div>
                 </div>
                 <div class="video-wrapper">
                     <div class="video-container">
                         <video id="video3" class="video-player"></video>
                         <div class="video-controls">
-                            <button class="control-button mute-button" onclick="toggleMute(2)">Unmute</button>
-                            <button class="control-button fullscreen-button" onclick="toggleFullscreen(2)">Fullscreen</button>
+                            <button class="control-button mute-button" onclick="toggleMute(2)">
+                                <img src="https://i.postimg.cc/kgJm5t8B/volume-off-indicator.png" alt="Mute">
+                            </button>
+                            <button class="control-button fullscreen-button" onclick="toggleFullscreen(2)">
+                                <img src="https://i.postimg.cc/Vs4yVk2w/fullscreen.png" alt="Fullscreen">
+                            </button>
                         </div>
                     </div>
                     <div class="title-box" onclick="copyHlsUrl(2, this)">
-                        <h3 class="title-text">Video 3 Title</h3>
+                        <h3 class="title-text">ΣΚΑΪ</h3>
                     </div>
                 </div>
                 <div class="video-wrapper">
                     <div class="video-container">
                         <video id="video4" class="video-player"></video>
                         <div class="video-controls">
-                            <button class="control-button mute-button" onclick="toggleMute(3)">Unmute</button>
-                            <button class="control-button fullscreen-button" onclick="toggleFullscreen(3)">Fullscreen</button>
+                            <button class="control-button mute-button" onclick="toggleMute(3)">
+                                <img src="https://i.postimg.cc/kgJm5t8B/volume-off-indicator.png" alt="Mute">
+                            </button>
+                            <button class="control-button fullscreen-button" onclick="toggleFullscreen(3)">
+                                <img src="https://i.postimg.cc/Vs4yVk2w/fullscreen.png" alt="Fullscreen">
+                            </button>
                         </div>
                     </div>
                     <div class="title-box" onclick="copyHlsUrl(3, this)">
-                        <h3 class="title-text">Video 4 Title</h3>
+                        <h3 class="title-text">ΕΡΤ NEWS</h3>
                     </div>
                 </div>
                 <div class="video-wrapper">
                     <div class="video-container">
                         <video id="video5" class="video-player"></video>
                         <div class="video-controls">
-                            <button class="control-button mute-button" onclick="toggleMute(4)">Unmute</button>
-                            <button class="control-button fullscreen-button" onclick="toggleFullscreen(4)">Fullscreen</button>
+                            <button class="control-button mute-button" onclick="toggleMute(4)">
+                                <img src="https://i.postimg.cc/kgJm5t8B/volume-off-indicator.png" alt="Mute">
+                            </button>
+                            <button class="control-button fullscreen-button" onclick="toggleFullscreen(4)">
+                                <img src="https://i.postimg.cc/Vs4yVk2w/fullscreen.png" alt="Fullscreen">
+                            </button>
                         </div>
                     </div>
                     <div class="title-box" onclick="copyHlsUrl(4, this)">
-                        <h3 class="title-text">Video 5 Title</h3>
+                        <h3 class="title-text">OPEN</h3>
                     </div>
                 </div>
                 <div class="video-wrapper">
                     <div class="video-container">
                         <video id="video6" class="video-player"></video>
                         <div class="video-controls">
-                            <button class="control-button mute-button" onclick="toggleMute(5)">Unmute</button>
-                            <button class="control-button fullscreen-button" onclick="toggleFullscreen(5)">Fullscreen</button>
+                            <button class="control-button mute-button" onclick="toggleMute(5)">
+                                <img src="https://i.postimg.cc/kgJm5t8B/volume-off-indicator.png" alt="Mute">
+                            </button>
+                            <button class="control-button fullscreen-button" onclick="toggleFullscreen(5)">
+                                <img src="https://i.postimg.cc/Vs4yVk2w/fullscreen.png" alt="Fullscreen">
+                            </button>
                         </div>
                     </div>
                     <div class="title-box" onclick="copyHlsUrl(5, this)">
-                        <h3 class="title-text">Video 6 Title</h3>
+                        <h3 class="title-text">STAR</h3>
                     </div>
                 </div>
                 <div class="video-wrapper">
                     <div class="video-container">
                         <video id="video7" class="video-player"></video>
                         <div class="video-controls">
-                            <button class="control-button mute-button" onclick="toggleMute(6)">Unmute</button>
-                            <button class="control-button fullscreen-button" onclick="toggleFullscreen(6)">Fullscreen</button>
+                            <button class="control-button mute-button" onclick="toggleMute(6)">
+                                <img src="https://i.postimg.cc/kgJm5t8B/volume-off-indicator.png" alt="Mute">
+                            </button>
+                            <button class="control-button fullscreen-button" onclick="toggleFullscreen(6)">
+                                <img src="https://i.postimg.cc/Vs4yVk2w/fullscreen.png" alt="Fullscreen">
+                            </button>
                         </div>
                     </div>
                     <div class="title-box" onclick="copyHlsUrl(6, this)">
-                        <h3 class="title-text">Video 7 Title</h3>
+                        <h3 class="title-text">MEGA</h3>
                     </div>
                 </div>
                 <div class="video-wrapper">
                     <div class="video-container">
                         <video id="video8" class="video-player"></video>
                         <div class="video-controls">
-                            <button class="control-button mute-button" onclick="toggleMute(7)">Unmute</button>
-                            <button class="control-button fullscreen-button" onclick="toggleFullscreen(7)">Fullscreen</button>
+                            <button class="control-button mute-button" onclick="toggleMute(7)">
+                                <img src="https://i.postimg.cc/kgJm5t8B/volume-off-indicator.png" alt="Mute">
+                            </button>
+                            <button class="control-button fullscreen-button" onclick="toggleFullscreen(7)">
+                                <img src="https://i.postimg.cc/Vs4yVk2w/fullscreen.png" alt="Fullscreen">
+                            </button>
                         </div>
                     </div>
                     <div class="title-box" onclick="copyHlsUrl(7, this)">
-                        <h3 class="title-text">Video 8 Title</h3>
+                        <h3 class="title-text">ΒΟΥΛΗ</h3>
                     </div>
                 </div>
             </div>
@@ -622,19 +689,19 @@
 
         // Video source setup
         const headerVideoSources = [
-            'https://live-hls-web-aja-fa.getaj.net/AJA/index.m3u8',
-            'https://live-hls-web-aja-fa.getaj.net/AJA/index.m3u8'
+            'https://actionlive.siliconweb.com/actionabr/1actiontv/playlist.m3u8',
+            'https://atticatv.siliconweb.com/atticatv/1atticaliveabr/playlist.m3u8'
         ];
 
         const gridVideoSources = [
-            'https://live-hls-web-aje-fa.getaj.net/AJE/index.m3u8',
-            'https://live-hls-web-aje-fa.getaj.net/AJE/index.m3u8',
-            'https://live-hls-we1b-aje-fa.getaj.net/AJE/index.m3u8',
-            'https://live-hls-web-aje-fa.getaj.net/AJE/index.m3u8',
-            'https://live-hls-web-ajm.getaj.net/AJM/index.m3u8',
-            'https://live-hls-web-aje-fa.getaj.net/AJE/index.m3u8',
-            'https://live-hls-web-aje-fa.getaj.net/AJE/index.m3u8',
-            'https://live-hls-web-aje-fa.getaj.net/AJE/index.m3u8'
+            'https://d1nfykbwa3n98t.cloudfront.net/out/v1/6e5667da5a6843899a337dea72adb61b/antenna.m3u8',
+            'https://alphatvlive.siliconweb.com/1/Y2Rsd1lUcUVoajcv/UVdCN25h/hls/live/playlist.m3u8',
+            'https://skai-live.siliconweb.com/media/cambria4/index.m3u8',
+            'https://ertflix.s.llnwi.net/ertlive/ertnews/default/ERTNews.m3u8',
+            'https://liveopencloud.siliconweb.com/1/ZlRza2R6L2tFRnFJ/eWVLSlQx/hls/live/playlist.m3u8',
+            'https://livestar.siliconweb.com/starvod/star4/star4.m3u8',
+            'https://streamcdnb2-c98db5952cb54b358365984178fb898a.msvdn.net/live/S86713049/gonOwuUacAxM/playlist.m3u8',
+            'https://ertflix.s.llnwi.net/ertlive/vouli/default/index.m3u8'
         ];
         
         let lastUnmutedGridVideo = null;
@@ -679,7 +746,7 @@
                             if (!gridVideo.muted) {
                                 lastUnmutedGridVideo = gridVideo;
                                 gridVideo.muted = true;
-                                gridVideo.parentElement.querySelector('.mute-button').textContent = 'Unmute';
+                                updateMuteButtonIcon(gridVideo.parentElement.querySelector('.mute-button'), true);
                             }
                         });
 
@@ -708,7 +775,7 @@
 
                         if (lastUnmutedGridVideo) {
                             lastUnmutedGridVideo.muted = false;
-                            lastUnmutedGridVideo.parentElement.querySelector('.mute-button').textContent = 'Mute';
+                            updateMuteButtonIcon(lastUnmutedGridVideo.parentElement.querySelector('.mute-button'), false);
                             lastUnmutedGridVideo = null;
                         }
 
@@ -768,7 +835,7 @@
                             if (!gridVideo.muted) {
                                 lastUnmutedGridVideo = gridVideo;
                                 gridVideo.muted = true;
-                                gridVideo.parentElement.querySelector('.mute-button').textContent = 'Unmute';
+                                updateMuteButtonIcon(gridVideo.parentElement.querySelector('.mute-button'), true);
                             }
                         });
 
@@ -786,7 +853,7 @@
 
                     if (lastUnmutedGridVideo) {
                         lastUnmutedGridVideo.muted = false;
-                        lastUnmutedGridVideo.parentElement.querySelector('.mute-button').textContent = 'Mute';
+                        updateMuteButtonIcon(lastUnmutedGridVideo.parentElement.querySelector('.mute-button'), false);
                         lastUnmutedGridVideo = null;
                     }
 
@@ -889,23 +956,60 @@
             const video = document.getElementById(`video${index + 1}`);
             const muteButton = video.parentElement.querySelector('.mute-button');
             
+            // Mute all other videos first
             document.querySelectorAll('.video-player').forEach((otherVideo, otherIndex) => {
                 if (otherIndex !== index) {
                     otherVideo.muted = true;
-                    otherVideo.parentElement.querySelector('.mute-button').textContent = 'Unmute';
+                    updateMuteButtonIcon(otherVideo.parentElement.querySelector('.mute-button'), true);
                 }
             });
 
+            // Toggle mute state for the clicked video
             if (video.muted) {
                 video.muted = false;
-                muteButton.textContent = 'Mute';
+                updateMuteButtonIcon(muteButton, false);
                 lastUnmutedGridVideo = video;
             } else {
                 video.muted = true;
-                muteButton.textContent = 'Unmute';
+                updateMuteButtonIcon(muteButton, true);
                 lastUnmutedGridVideo = null;
             }
+
+            // Ensure the video is playing
+            video.play().catch(error => console.log('Playback was prevented:', error));
         }
+
+        function updateMuteButtonIcon(button, isMuted) {
+            const img = button.querySelector('img');
+            if (img) {
+                img.src = isMuted ? "https://i.postimg.cc/kgJm5t8B/volume-off-indicator.png" : "https://i.postimg.cc/sxCFCBsf/volume-up-indicator.png";
+            }
+        }
+
+        // Add event listener for fullscreenchange
+        document.addEventListener('fullscreenchange', function() {
+            const fullscreenVideo = document.fullscreenElement;
+            if (!fullscreenVideo) {
+                // When exiting fullscreen, ensure all mute buttons show the correct icon
+                document.querySelectorAll('.video-player').forEach((video) => {
+                    const muteIcon = video.parentElement.querySelector('.mute-button img');
+                    if (muteIcon) {
+                        muteIcon.src = video.muted ? "https://i.postimg.cc/kgJm5t8B/volume-off-indicator.png" : "https://i.postimg.cc/sxCFCBsf/volume-up-indicator.png";
+                    }
+                });
+            }
+        });
+
+        // Ensure mute buttons always show icons, not text
+        document.querySelectorAll('.mute-button').forEach((button) => {
+            const img = button.querySelector('img');
+            if (!img) {
+                const newImg = document.createElement('img');
+                newImg.src = "https://i.postimg.cc/kgJm5t8B/volume-off-indicator.png";
+                button.textContent = ''; // Remove any existing text
+                button.appendChild(newImg);
+            }
+        });
 
         function toggleFullscreen(index) {
             const video = document.getElementById(`video${index + 1}`);
@@ -942,12 +1046,12 @@
         });
 
         // News ticker setup
-        const proxyUrl = 'https://api.allorigins.win/raw?url=';
-        const googleNewsRss = 'https://news.google.com/rss?hl=el&gl=GR&ceid=GR:el';
+        const proxyUrl = 'https://api.codetabs.com/v1/proxy?quest=';
+        const greekNewsRss = 'https://www.in.gr/feed';
 
         async function fetchNews() {
             try {
-                const response = await fetch(proxyUrl + encodeURIComponent(googleNewsRss));
+                const response = await fetch(proxyUrl + encodeURIComponent(greekNewsRss));
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -981,6 +1085,29 @@
                 `<span class="crawl-item"><a href="${item.link}" target="_blank">${item.title}</a></span>`
             ).join('');
             document.getElementById('error-message').textContent = '';
+            
+            // Set up right-to-left animation
+            crawl.style.whiteSpace = 'nowrap';
+            crawl.style.position = 'relative';
+            crawl.style.right = '0';
+            
+            let animationFrame;
+            function animate() {
+                const currentRight = parseInt(crawl.style.right);
+                if (currentRight >= crawl.scrollWidth / 2) {
+                    // Reset to the beginning when we've scrolled through half of the content
+                    crawl.style.right = '0';
+                } else {
+                    crawl.style.right = (currentRight + 1) + 'px';
+                }
+                animationFrame = requestAnimationFrame(animate);
+            }
+            
+            animate();
+
+            // Add event listener to pause animation on hover
+            crawl.addEventListener('mouseenter', () => cancelAnimationFrame(animationFrame));
+            crawl.addEventListener('mouseleave', () => animate());
         }
 
         function displayError(message) {
@@ -991,8 +1118,9 @@
         // Initial fetch
         fetchNews();
 
-        // Refresh news every 5 minutes
-        setInterval(fetchNews, 5 * 60 * 1000);
+        // Refresh news every 10 minutes
+        setInterval(fetchNews, 10 * 60 * 1000);
     </script>
 </body>
+
 </html>
