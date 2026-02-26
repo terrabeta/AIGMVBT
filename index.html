@@ -292,13 +292,24 @@ body{
 ::-webkit-scrollbar-thumb:hover {background: rgba(255, 255, 255, 0.25);}
 ::selection {background: rgba(10, 132, 255, 0.4);}
 
+/* 2x2 layout - hide chat to save space */
 @media (max-width:1400px){
   #main-container { 
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
   }
+  .chat-container {
+    display: none;
+  }
+  /* Let video fill remaining space when chat is hidden */
+  .video-container {
+    padding-top: 0;
+    flex: 1;
+    min-height: 0;
+  }
 }
 
+/* Single column layout - also no chat */
 @media (max-width:768px){
   #main-container { 
     grid-template-columns: 1fr;
