@@ -562,7 +562,6 @@ class StreamApp {
       this.pendingLoads.push({ slot, vidId }); 
     }
     
-    // Load chat
     this.loadChat(slot, vidId);
     
     this._ensureSlotState(slot); 
@@ -627,7 +626,6 @@ class StreamApp {
       this.pendingLoads.push({ slot, vidId }); 
     }
     
-    // Load chat
     this.loadChat(slot, vidId);
     
     this._ensureSlotState(slot); 
@@ -669,7 +667,6 @@ class StreamApp {
     const closeBtn = document.getElementById(`close-${slot}`); 
     if (closeBtn) closeBtn.style.display = 'none';
     
-    // Clear chat
     this.clearChat(slot);
     
     if (this.slotStates[slot]) { 
@@ -686,12 +683,10 @@ class StreamApp {
       const data = await res.json(); 
       const titleEl = document.getElementById(`title-${slot}`); 
       if (!titleEl) return; 
-      // Use video title instead of author_name (channel name)
       if (data.title) { 
         titleEl.innerText = data.title; 
         titleEl.style.color = 'var(--text-primary)'; 
       } else if (data.author_name) {
-        // Fallback to channel name if no title
         titleEl.innerText = data.author_name; 
         titleEl.style.color = 'var(--text-secondary)'; 
       } else { 
